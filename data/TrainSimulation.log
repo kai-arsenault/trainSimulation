@@ -1,0 +1,20 @@
+Start Logger test
+
+----------
+Configuration:
+
+Ticks: 50
+Seed: 12345
+Route: Linear with length 20
+Stations: [1, 20, 4, 15, 10]
+Trains:
+	Inbound at location 1 with capacity 20
+	Inbound at location 2 with capacity 15
+	Inbound at location 6 with capacity 20
+	Inbound at location 10 with capacity 20
+	Outbound at location 4 with capacity 10
+	Outbound at location 20 with capacity 25
+Passengers: [50, 5..75]
+----------
+
+Finish Logger test
