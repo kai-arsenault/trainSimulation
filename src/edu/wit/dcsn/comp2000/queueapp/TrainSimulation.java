@@ -109,6 +109,7 @@ public class TrainSimulation {
     		                   aPassenger.toStringFull()
     						) ;
     		}	// end for()
+    	
 	}
 
 }
