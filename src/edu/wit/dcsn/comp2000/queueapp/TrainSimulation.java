@@ -132,11 +132,14 @@ public class TrainSimulation {
 							aTrain.getCapacity());
 				} // end foreach()
 
-				// Get passengers off train
-				int trainID = 1; // TODO: make trainID equal to train that is at station
-				for (int i = 0; i < trains.get(trainID).getPopulation(); i++) {
-
-				}
+				// Remove and pick up passengers as necessary
+				for (int trainID = 0; trainID < trains.size(); trainID++) {
+					// Check if train is at a station
+					if (getStation(stationList, trains.get(trainID).getLocation()) == null) {
+						// Remove passengers
+						trains.get(trainID).removePassengers(getStation(stationList, trains.get(trainID).getLocation()));
+					}
+				} //end for()
 			} // end for()
 
 		}
