@@ -35,12 +35,11 @@
 
 package edu.wit.dcsn.comp2000.queueapp;
 
-import java.io.FileNotFoundException ;
-import java.util.ArrayList ;
-import java.util.Arrays ;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec ;
-
+import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
 
 /**
  * Representation of a train on a train route. A Train has a fixed, limited
@@ -60,78 +59,65 @@ import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec ;
  * 
  * @author David M Rosenberg
  * @author Kai Arsenault
- * @version 1.0.0	base version
+ * @version 1.0.0 base version
  */
-public final class Train
-	{
+public final class Train {
 	// class-wide/shared information
-	private static int	nextId =		1 ;	// enables automatic id assignment
-	
-	// per-instance fields
-	private final int	id ;				// unique id for this train route
-	
-	private final int	capacity ;
-	private Location	currentLocation ;
-	private ArrayList< Passenger >
-						passengers ;
+	private static int nextId = 1; // enables automatic id assignment
 
-	
+	// per-instance fields
+	private final int id; // unique id for this train route
+
+	private final int capacity;
+	private Location currentLocation;
+	private ArrayList<Passenger> passengers;
+
 	/**
-	 * @param onRoute the instance of the TrainRoute on which this Train
-	 *            operates
+	 * @param onRoute            the instance of the TrainRoute on which this Train
+	 *                           operates
 	 * @param trainSpecification the specifications from the configuration file
 	 */
-	public Train( TrainRoute	onRoute,
-	              TrainSpec		trainSpecification )
-    	{
-    	id =							Train.nextId++ ;	// assign the next unique id
-    	
-    	// create an empty collection to hold Passengers while they're on board
-    	passengers =					new ArrayList<>() ;
-    	
-    	// save the configuration parameters
-    	capacity =						trainSpecification.capacity ;
-    	currentLocation =				new Location( onRoute,
-    	             					              trainSpecification.location,
-    	             					              trainSpecification.direction ) ;
-    	
-    	}	// end 2-arg constructor
-	
-	
+	public Train(TrainRoute onRoute, TrainSpec trainSpecification) {
+		id = Train.nextId++; // assign the next unique id
+
+		// create an empty collection to hold Passengers while they're on board
+		passengers = new ArrayList<>();
+
+		// save the configuration parameters
+		capacity = trainSpecification.capacity;
+		currentLocation = new Location(onRoute, trainSpecification.location, trainSpecification.direction);
+
+	} // end 2-arg constructor
+
 	/**
-	 * Retrieves the capacity (maximum number of Passengers simultaneously on
-	 * this train) as specified in the configuration file
+	 * Retrieves the capacity (maximum number of Passengers simultaneously on this
+	 * train) as specified in the configuration file
 	 * 
 	 * @return the capacity was set when the train was instantiated
 	 */
-	public int getCapacity()
-    	{
-    	return capacity ;
-    	}	// end getCapacity()
-	
-	
+	public int getCapacity() {
+		return capacity;
+	} // end getCapacity()
+
 	/**
 	 * Retrieves the current location along a route
 	 * 
 	 * @return the current location object
 	 */
-	public Location getLocation()
-    	{
-    	return currentLocation ;
-    	}	// end getLocation()
-	
-	
-	/* (non-Javadoc)
+	public Location getLocation() {
+		return currentLocation;
+	} // end getLocation()
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString()
-    	{
-    	return String.format( "%s %,d", 
-    	                      getClass().getSimpleName(),
-    	                      id ) ;
-    	}	// end toString()
-	
+	public String toString() {
+		return String.format("%s %,d", getClass().getSimpleName(), id);
+	} // end toString()
+
 	/**
 	 * Retrieves the current number of passengers on train
 	 * 
@@ -140,7 +126,7 @@ public final class Train
 	public int getPopulation() {
 		return passengers.size();
 	}
-	
+
 	/**
 	 * Retrieves the current number of empty spots on train
 	 * 
@@ -149,44 +135,33 @@ public final class Train
 	public int getSeatsRemaining() {
 		return getCapacity() - getPopulation();
 	}
-	
+
 	public void removePassengers(Location location) {
-		
-		
+
 	}
-	
+
 	// TODO complete this
-	
-	
-	
+
 	/**
 	 * Unit test driver
 	 * 
 	 * @param args -unused-
 	 * @throws FileNotFoundException see {@link Configuration#Configuration()}
 	 */
-	public static void main( String[] args ) throws FileNotFoundException
-    	{
-    	Configuration	theConfig =		new Configuration() ;
-       	TrainRoute		theRoute =		new TrainRoute( theConfig.getRoute() ) ;
-    	TrainSpec[]		theTrainSpecs =	theConfig.getTrains() ;
-    	
-    	System.out.printf( "Using configuration:%n\t%s%n",
-    	                   Arrays.toString( theTrainSpecs )
-    	                   ) ;
-    	
-    	System.out.println( "The result is:" ) ;
-    	
-    	for( TrainSpec aTrainSpecification : theTrainSpecs )
-    		{
-    		Train		aTrain =		new Train( theRoute, aTrainSpecification ) ;
-    		System.out.printf( "\t%s is %s with capacity %,d%n",
-    		                   aTrain,
-    		                   aTrain.currentLocation,
-    		                   aTrain.capacity
-    						) ;
-    		}	// end foreach()
+	public static void main(String[] args) throws FileNotFoundException {
+		Configuration theConfig = new Configuration();
+		TrainRoute theRoute = new TrainRoute(theConfig.getRoute());
+		TrainSpec[] theTrainSpecs = theConfig.getTrains();
 
-    	}	// end test driver main()
+		System.out.printf("Using configuration:%n\t%s%n", Arrays.toString(theTrainSpecs));
 
-	}	// end class TrainRoute
+		System.out.println("The result is:");
+
+		for (TrainSpec aTrainSpecification : theTrainSpecs) {
+			Train aTrain = new Train(theRoute, aTrainSpecification);
+			System.out.printf("\t%s is %s with capacity %,d%n", aTrain, aTrain.currentLocation, aTrain.capacity);
+		} // end foreach()
+
+	} // end test driver main()
+
+} // end class TrainRoute
