@@ -34,21 +34,21 @@ package edu.wit.dcsn.comp2000.queueapp ;
  */
 public enum RouteStyle
 	{
-/**
- * the route has two parallel tracks (inbound and outbound) where the next
- * station following the last outbound location is the same/corresponding
- * location on the inbound track and the next location following the first
- * inbound location is the first location on the outbound track
- */
-LINEAR ( "Linear" ),
-/** synonym for LINEAR */
-POINT_TO_POINT ( "Point-to-point" ),
-/**
- * the route has two concentric tracks where the next station following the last
- * location is the first location and vice versa - trains don't change direction
- * (clockwise and counterclockwise)
- */
-CIRCULAR ( "Circular" );
+	/**
+	 * the route has two parallel tracks (inbound and outbound) where the next
+	 * station following the last outbound location is the same/corresponding
+	 * location on the inbound track and the next location following the first
+	 * inbound location is the first location on the outbound track
+	 */
+	LINEAR ( "Linear" ),
+	/** synonym for LINEAR */
+	POINT_TO_POINT ( "Point-to-point" ),
+	/**
+	 * the route has two concentric tracks where the next station following the last
+	 * location is the first location and vice versa - trains don't change direction
+	 * (clockwise and counterclockwise)
+	 */
+	CIRCULAR ( "Circular" );
 
 	// instance variables
 
