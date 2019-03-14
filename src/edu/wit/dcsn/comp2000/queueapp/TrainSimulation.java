@@ -133,12 +133,13 @@ public class TrainSimulation {
 				} // end for()
 
 				// Remove and pick up passengers as necessary
-				System.out.println(trains.size());
 				for (int trainID = 0; trainID < trains.size(); trainID++) {
 					// Check if train is at a station
 					if (getStation(stationList, trains.get(trainID).getLocation()) == null) {
 						// Remove passengers
 						trains.get(trainID).removePassengers(getStation(stationList, trains.get(trainID).getLocation()));
+						// TODO: pickup passengers until max capacity
+						
 					}
 				} //end for()
 			} // end for()
