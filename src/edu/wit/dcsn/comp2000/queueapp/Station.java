@@ -114,7 +114,7 @@ public final class Station
 	
 	
 	public boolean addPassenger(Passenger passenger, Direction direction) {
-		platforms.get(direction).add(passenger);
+		return platforms.get(direction).add(passenger);
 	}
 
 	// TODO complete this

@@ -131,7 +131,27 @@ public final class Train
     	                      id ) ;
     	}	// end toString()
 	
+	/**
+	 * Retrieves the current number of passengers on train
+	 * 
+	 * @return the current number of passengers on train
+	 */
+	public int getPopulation() {
+		return passengers.size();
+	}
 	
+	/**
+	 * Retrieves the current number of empty spots on train
+	 * 
+	 * @return the number of remaining empty spots on train
+	 */
+	public int getSeatsRemaining() {
+		return getCapacity() - getPopulation();
+	}
+	
+	public void removePassengers(Location location) {
+		
+	}
 	
 	// TODO complete this
 	

@@ -21,127 +21,111 @@ package edu.wit.dcsn.comp2000.queueapp;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
+
 /**
  * @author Your Name
  * @version 1.0.0
  */
 public class TrainSimulation {
 
-	private Station getStation(Location location) {
-
-	}
+//	private Station getStation(Location location) {
+//		
+//	}
 
 	/**
 	 * @param args -unused-
 	 */
-	public static void main( String[] args ) throws FileNotFoundException
-		{
+	public static void main(String[] args) throws FileNotFoundException {
 		Configuration config = new Configuration();
 		TrainRoute route = new TrainRoute(config.getRoute());
+		TrainSpec[]		theTrainSpecs =	config.getTrains() ;
 		ArrayList<Station> stationList = new ArrayList<>();
 
-		int[]			theStationSpecs =	config.getStations() ;
-		Configuration.PairedLimit[]	thePassengerSpecs =	config.getPassengers() ;
+		int[] theStationSpecs = config.getStations();
+		Configuration.PairedLimit[] thePassengerSpecs = config.getPassengers();
 
-		System.out.printf( "Using configurations:%n\t%-20s\t: %s%n\t%-20s\t: %s%n",
-				"Stations",
-				Arrays.toString( theStationSpecs ),
-				"Passengers",
-				Arrays.toString( thePassengerSpecs )
-		) ;
-
-
+		System.out.printf("Using configurations:%n\t%-20s\t: %s%n\t%-20s\t: %s%n", "Stations",
+				Arrays.toString(theStationSpecs), "Passengers", Arrays.toString(thePassengerSpecs));
 
 		// create a pseudo-random number generator instance
-		Random pseudoRandom =	new Random( config.getSeed() ) ;
+		Random pseudoRandom = new Random(config.getSeed());
 
-		int				minimumPassengers =
-				thePassengerSpecs[ Configuration.PASSENGERS_INITIAL ].minimum ;
-		int				maximumPassengers =
-				thePassengerSpecs[ Configuration.PASSENGERS_INITIAL ].maximum ;
-		int				newPassengerCount =
-				minimumPassengers == maximumPassengers
-						? minimumPassengers
-						: pseudoRandom.nextInt( maximumPassengers - minimumPassengers )
-						+ minimumPassengers + 1 ;
+		int minimumPassengers = thePassengerSpecs[Configuration.PASSENGERS_INITIAL].minimum;
+		int maximumPassengers = thePassengerSpecs[Configuration.PASSENGERS_INITIAL].maximum;
+		int newPassengerCount = minimumPassengers == maximumPassengers ? minimumPassengers
+				: pseudoRandom.nextInt(maximumPassengers - minimumPassengers) + minimumPassengers + 1;
 
-		System.out.printf( "Generating %d passengers (initial):%n",
-				newPassengerCount ) ;
-		System.out.println( "Note: Same from/to possible - additional work required to ensure they're different." ) ;
+		System.out.printf("Generating %d passengers (initial):%n", newPassengerCount);
+		System.out.println("Note: Same from/to possible - additional work required to ensure they're different.");
 
 		// Add stations to the simulation
-		for( int stationPosition : theStationSpecs )
-		{
-			Station		aStation =		new Station( route, stationPosition ) ;
+		for (int stationPosition : theStationSpecs) {
+			Station aStation = new Station(route, stationPosition);
 			stationList.add(aStation);
-			System.out.printf( "\t%s is %s%n",
-					aStation,
-					aStation.getLocation()
-			) ;
-		}	// end foreach()
+			System.out.printf("\t%s is %s%n", aStation, aStation.getLocation());
+		} // end foreach()
 
 		// Add the initial amount of passengers
-		for( int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++ )
-		{
-			Passenger	aPassenger =
-					new Passenger(
-							new Location(
-									route,
-									theStationSpecs[ pseudoRandom.nextInt( theStationSpecs.length ) ],
-									Direction.NOT_APPLICABLE
-							),
-							new Location(
-									route,
-									theStationSpecs[ pseudoRandom.nextInt( theStationSpecs.length ) ],
-									Direction.NOT_APPLICABLE
-							),
-							0	// current time indicates that clock hasn't started
-					) ;
+		for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
+			Passenger aPassenger = new Passenger(
+					new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
+							Direction.NOT_APPLICABLE),
+					new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
+							Direction.NOT_APPLICABLE),
+					0 // current time indicates that clock hasn't started
+			);
 
-			System.out.printf( "\t%s%n",
-					aPassenger.toStringFull()
-			) ;
-		}	// end for()
+			System.out.printf("\t%s%n", aPassenger.toStringFull());
+		} // end for()
 
-		minimumPassengers =			thePassengerSpecs[ Configuration.PASSENGERS_PER_TICK ].minimum ;
-		maximumPassengers =			thePassengerSpecs[ Configuration.PASSENGERS_PER_TICK ].maximum ;
+		minimumPassengers = thePassengerSpecs[Configuration.PASSENGERS_PER_TICK].minimum;
+		maximumPassengers = thePassengerSpecs[Configuration.PASSENGERS_PER_TICK].maximum;
 
-		int		simulationLoops =	config.getTicks() ;
+		int simulationLoops = config.getTicks();
 
 		// Main loop
-		for( int currentTime = 1; currentTime <= simulationLoops; currentTime++ )
-			{
-			newPassengerCount =		minimumPassengers == maximumPassengers
-					? minimumPassengers
-					: pseudoRandom.nextInt( maximumPassengers - minimumPassengers )
-					+ minimumPassengers + 1 ;
+		for (int currentTime = 1; currentTime <= simulationLoops; currentTime++) {
+			newPassengerCount = minimumPassengers == maximumPassengers ? minimumPassengers
+					: pseudoRandom.nextInt(maximumPassengers - minimumPassengers) + minimumPassengers + 1;
 
-			System.out.printf( "%,5d: Generating %d passengers (per-tick):%n",
-					currentTime,
-					newPassengerCount ) ;
+			System.out.printf("%,5d: Generating %d passengers (per-tick):%n", currentTime, newPassengerCount);
 
-			for( int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++ )
-				{
-				Passenger	aPassenger =
-						new Passenger(
-								new Location(
-										route,
-										theStationSpecs[ pseudoRandom.nextInt( theStationSpecs.length ) ],
-										Direction.NOT_APPLICABLE
-								),
-								new Location(
-										route,
-										theStationSpecs[ pseudoRandom.nextInt( theStationSpecs.length ) ],
-										Direction.NOT_APPLICABLE
-								),
-								currentTime
-						) ;
-				System.out.printf( "\t%s%n",
-						aPassenger.toStringFull()
-				) ;
-				}	// end for()
-			}	// end for()
+			for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
+				Passenger aPassenger = new Passenger(
+						new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
+								Direction.NOT_APPLICABLE),
+						new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
+								Direction.NOT_APPLICABLE),
+						currentTime);
+				System.out.printf("\t%s%n", aPassenger.toStringFull());
+			} // end for()
+			
+			
+			//Generate trains in train route
+			ArrayList<Train> trains = new ArrayList<>();
+			for( TrainSpec aTrainSpecification : theTrainSpecs )
+    		{
+    		Train		aTrain =		new Train( route, aTrainSpecification ) ;
+    		trains.add(aTrain);
+    		System.out.printf( "\t%s is %s with capacity %,d%n",
+    		                   aTrain,
+    		                   aTrain.getLocation(),
+    		                   aTrain.getCapacity()
+    						) ;
+    		}	// end foreach()
+			
+			//When a train is at a station use this code to put passengers on a train
+			
+			//get passengers off the train
+			int trainID = 1; //TODO: Make trainID equal train that is at station
+			for(int i = 0; i<trains.get(trainID).getPopulation(); i++) {
+				//if(trains.get(trainID).passengers.get(i).getTo() == trains.get(trainID).getLocation()) {
+					
+				//}
+			}
+		} // end for()
 
-		}
+	}
 
 }
