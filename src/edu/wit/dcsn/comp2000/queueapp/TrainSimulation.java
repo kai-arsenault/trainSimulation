@@ -73,7 +73,16 @@ public class TrainSimulation {
 			stationList.add(aStation);
 			System.out.printf("\t%s is %s%n", aStation, aStation.getLocation());
 		} // end foreach()
-
+		
+		// Generate trains in train route
+		ArrayList<Train> trains = new ArrayList<>();
+		for (TrainSpec aTrainSpecification : theTrainSpecs) {
+			Train aTrain = new Train(route, aTrainSpecification);
+			trains.add(aTrain);
+			System.out.printf("\t%s is %s with capacity %,d%n", aTrain, aTrain.getLocation(),
+					aTrain.getCapacity());
+		} // end foreach()
+		
 		// Add the initial amount of passengers
 		for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
 			Passenger aPassenger = new Passenger(
@@ -123,16 +132,8 @@ public class TrainSimulation {
 					tempStation.addPassenger(aPassenger, tempDirection);
 				} // end for()
 
-				// Generate trains in train route
-				ArrayList<Train> trains = new ArrayList<>();
-				for (TrainSpec aTrainSpecification : theTrainSpecs) {
-					Train aTrain = new Train(route, aTrainSpecification);
-					trains.add(aTrain);
-					System.out.printf("\t%s is %s with capacity %,d%n", aTrain, aTrain.getLocation(),
-							aTrain.getCapacity());
-				} // end foreach()
-
 				// Remove and pick up passengers as necessary
+				System.out.println(trains.size());
 				for (int trainID = 0; trainID < trains.size(); trainID++) {
 					// Check if train is at a station
 					if (getStation(stationList, trains.get(trainID).getLocation()) == null) {
