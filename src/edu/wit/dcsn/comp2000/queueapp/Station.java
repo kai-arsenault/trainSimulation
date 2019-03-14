@@ -42,7 +42,8 @@ import java.util.Queue ;
  * them to their destination in the least time.
  * 
  * @author David M Rosenberg
- * @version 1.0.0	base version
+ * @author Michael Rivnak
+ * @version 1.1.0	base version
  */
 public final class Station
 	{
@@ -114,8 +115,24 @@ public final class Station
 	
 	
 	public boolean addPassenger(Passenger passenger, Direction direction) {
-		return platforms.get(direction).add(passenger);
+		 return platforms.get(direction).add(passenger);
 	}
+
+	/**
+	 * Retrieves the specified amount of passengers from the platform queue
+	 *
+	 * @param direction which platform to remove the passengers from
+	 * @param quantity number of passengers to be requested
+	 *
+	 * @return an array of passengers to be put on a train
+	 */
+	public Passenger[] getPassengers(Direction direction, int quantity) {
+	    Passenger[] output = new Passenger[quantity];
+	    for (int i = 0; i < quantity; i++) {
+	        output[i] = platforms.get(direction).remove();
+        }
+	    return output;
+    }
 
 	// TODO complete this
 	
