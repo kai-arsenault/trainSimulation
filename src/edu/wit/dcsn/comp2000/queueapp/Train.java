@@ -59,6 +59,7 @@ import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec ;
  * authorship comments. If you modify this, add your authorship to mine.
  * 
  * @author David M Rosenberg
+ * @author Kai Arsenault
  * @version 1.0.0	base version
  */
 public final class Train
