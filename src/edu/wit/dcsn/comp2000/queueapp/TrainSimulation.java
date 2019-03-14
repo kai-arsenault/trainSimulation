@@ -158,8 +158,11 @@ public class TrainSimulation {
 
 				if (tempDirection != Direction.NOT_APPLICABLE && tempDirection != Direction.STATIONARY) {
 					tempStation.addPassenger(aPassenger, tempDirection);
-
 				}    // end for()
+				
+				// Generate trains in train route
+				
+				// Get passengers off train
 			}    // end for()
 
 		}
