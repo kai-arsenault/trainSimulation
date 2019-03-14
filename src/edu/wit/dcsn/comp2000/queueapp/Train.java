@@ -119,6 +119,15 @@ public final class Train {
 	} // end toString()
 
 	/**
+	 * Retrieves the train id
+	 * 
+	 * @return the id of the train
+	 */
+	public int getID() {
+		return id;
+	}
+	
+	/**
 	 * Retrieves the current number of passengers on train
 	 * 
 	 * @return the current number of passengers on train
@@ -136,8 +145,18 @@ public final class Train {
 		return getCapacity() - getPopulation();
 	}
 
-	public void removePassengers(Location location) {
-
+	/**
+	 * Removes all passengers that are supposed to get off a 
+	 * passed location
+	 * 
+	 * @param station the current location of the train
+	 */
+	public void removePassengers(Station station) {
+		for(int i=0; i<passengers.size(); i++) {
+			if(passengers.get(i).getTo() == station.getLocation()) {
+				passengers.remove(i);
+			}
+		}
 	}
 
 	// TODO complete this
