@@ -74,8 +74,8 @@ public final class Passenger
     	endTime =						-1 ;
 
     	}	// end 3-arg constructor
-	
-	
+
+
 	/**
 	 * Retrieves the starting station's location
 	 * 

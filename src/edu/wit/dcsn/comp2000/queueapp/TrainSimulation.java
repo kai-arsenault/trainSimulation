@@ -19,14 +19,17 @@
 package edu.wit.dcsn.comp2000.queueapp;
 
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author Your Name
  * @version 1.0.0
  */
 public class TrainSimulation {
+
+	private Station getStation(Location location) {
+
+	}
 
 	/**
 	 * @param args -unused-
@@ -35,6 +38,7 @@ public class TrainSimulation {
 		{
 		Configuration config = new Configuration();
 		TrainRoute route = new TrainRoute(config.getRoute());
+		ArrayList<Station> stationList = new ArrayList<>();
 
 		int[]			theStationSpecs =	config.getStations() ;
 		Configuration.PairedLimit[]	thePassengerSpecs =	config.getPassengers() ;
@@ -45,6 +49,8 @@ public class TrainSimulation {
 				"Passengers",
 				Arrays.toString( thePassengerSpecs )
 		) ;
+
+
 
 		// create a pseudo-random number generator instance
 		Random pseudoRandom =	new Random( config.getSeed() ) ;
@@ -63,7 +69,18 @@ public class TrainSimulation {
 				newPassengerCount ) ;
 		System.out.println( "Note: Same from/to possible - additional work required to ensure they're different." ) ;
 
-		// TODO: makee the passengers' directions random
+		// Add stations to the simulation
+		for( int stationPosition : theStationSpecs )
+		{
+			Station		aStation =		new Station( route, stationPosition ) ;
+			stationList.add(aStation);
+			System.out.printf( "\t%s is %s%n",
+					aStation,
+					aStation.getLocation()
+			) ;
+		}	// end foreach()
+
+		// Add the initial amount of passengers
 		for( int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++ )
 		{
 			Passenger	aPassenger =
@@ -80,11 +97,11 @@ public class TrainSimulation {
 							),
 							0	// current time indicates that clock hasn't started
 					) ;
+
 			System.out.printf( "\t%s%n",
 					aPassenger.toStringFull()
 			) ;
 		}	// end for()
-
 
 		minimumPassengers =			thePassengerSpecs[ Configuration.PASSENGERS_PER_TICK ].minimum ;
 		maximumPassengers =			thePassengerSpecs[ Configuration.PASSENGERS_PER_TICK ].maximum ;

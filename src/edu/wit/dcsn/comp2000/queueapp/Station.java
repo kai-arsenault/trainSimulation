@@ -82,7 +82,13 @@ public final class Station
     	               					              Direction.STATIONARY ) ;
     	
     	}	// end 2-arg constructor
-	
+
+	/**
+	 * Retrieves the ID for this station
+	 *
+	 * @return the ID object for this station
+	 */
+	public int getID() { return id; } // end getID()
 	
 	/**
 	 * Retrieves the location for this station
@@ -107,7 +113,10 @@ public final class Station
     	}	// end toString()
 	
 	
-	
+	public boolean addPassenger(Passenger passenger, Direction direction) {
+		platforms.get(direction).add(passenger);
+	}
+
 	// TODO complete this
 	
 	
