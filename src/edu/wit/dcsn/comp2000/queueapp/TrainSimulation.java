@@ -18,17 +18,15 @@
 
 package edu.wit.dcsn.comp2000.queueapp;
 
-
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Random;
 
 /**
- * @author Your Name; Kai Arsenault
+ * @author Your Name
  * @version 1.0.0
  */
-public class TrainSimulation
-	{
+public class TrainSimulation {
 
 	/**
 	 * @param args -unused-
@@ -129,4 +127,4 @@ public class TrainSimulation
 
 		}
 
-	}
+}
