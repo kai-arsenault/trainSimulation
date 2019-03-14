@@ -161,8 +161,22 @@ public class TrainSimulation {
 				}    // end for()
 				
 				// Generate trains in train route
+				ArrayList<Train> trains = new ArrayList<>();
+				for(TrainSpec aTrainSpecification : theTrainSpecs) {
+					Train aTrain = new Train(route, aTrainSpecification);
+					trains.add(aTrain);
+					System.out.printf("\t%s is %s with capacity %,d%n",
+										aTrain,
+										aTrain.getLocation(),
+										aTrain.getCapacity()
+									);
+				}	//end foreach()
 				
 				// Get passengers off train
+				int trainID = 1; //TODO: make trainID equal to train that is at station
+				for(int i = 0; i<trains.get(trainID).getPopulation(); i++) {
+					
+				}
 			}    // end for()
 
 		}
