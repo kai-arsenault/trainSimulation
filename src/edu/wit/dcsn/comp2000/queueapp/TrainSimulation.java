@@ -30,9 +30,16 @@ import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
  * @version 1.0.0
  */
 public class TrainSimulation {
-
+	// TODO: Finish method getStation's javadoc definition
+	/**
+	 * Get station based on location and station array list, if location is not a
+	 * station return a null
+	 * 
+	 * @param list     list of stations for current train route
+	 * @param location the location to check if station is located at
+	 * @return station or null
+	 */
 	private static Station getStation(ArrayList<Station> list, Location location) {
-
 		for (Station station : list) {
 			if (station.getLocation().equals(location)) {
 				return station;
@@ -73,16 +80,15 @@ public class TrainSimulation {
 			stationList.add(aStation);
 			System.out.printf("\t%s is %s%n", aStation, aStation.getLocation());
 		} // end foreach()
-		
+
 		// Generate trains in train route
 		ArrayList<Train> trains = new ArrayList<>();
 		for (TrainSpec aTrainSpecification : theTrainSpecs) {
 			Train aTrain = new Train(route, aTrainSpecification);
 			trains.add(aTrain);
-			System.out.printf("\t%s is %s with capacity %,d%n", aTrain, aTrain.getLocation(),
-					aTrain.getCapacity());
+			System.out.printf("\t%s is %s with capacity %,d%n", aTrain, aTrain.getLocation(), aTrain.getCapacity());
 		} // end foreach()
-		
+
 		// Add the initial amount of passengers
 		for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
 			Passenger aPassenger = new Passenger(
@@ -130,20 +136,21 @@ public class TrainSimulation {
 
 				if (tempDirection != Direction.NOT_APPLICABLE && tempDirection != Direction.STATIONARY) {
 					tempStation.addPassenger(aPassenger, tempDirection);
-				} // end for()
-
-				// Remove and pick up passengers as necessary
-				for (int trainID = 0; trainID < trains.size(); trainID++) {
-					// Check if train is at a station
-					if (getStation(stationList, trains.get(trainID).getLocation()) == null) {
-						// Remove passengers
-						trains.get(trainID).removePassengers(getStation(stationList, trains.get(trainID).getLocation()));
-						// TODO: pickup passengers until max capacity
-						
-					}
-				} //end for()
+				} // end if
 			} // end for()
 
-		}
-	}
-}
+			// Remove and pick up passengers as necessary
+			for (int trainID = 0; trainID < trains.size(); trainID++) {
+				Train currentTrain = trains.get(trainID);
+				Station currentStation = getStation(stationList, currentTrain.getLocation());
+				// Check if train is at a station
+				if (currentStation == null) {
+					currentTrain.removePassengers(currentStation);
+					// TODO: fix bugs
+					// currentTrain.addPassengers(currentStation);
+				} // end if
+			} // end for()
+		} // end for() main loop
+
+	} // end main()
+} // end class TrainSimulation
