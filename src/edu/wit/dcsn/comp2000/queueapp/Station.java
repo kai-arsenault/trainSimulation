@@ -127,6 +127,9 @@ public final class Station
 	 * @return an array of passengers to be put on a train
 	 */
 	public Passenger[] getPassengers(Direction direction, int quantity) {
+		// TODO: implement a way that if quantity is larger than number of 
+			//passengers on platform have a some solution, maybe fill remaining 
+			//output with null? If unclear talk to Kai
 	    Passenger[] output = new Passenger[quantity];
 	    for (int i = 0; i < quantity; i++) {
 	        output[i] = platforms.get(direction).remove();
