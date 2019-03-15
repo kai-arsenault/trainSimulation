@@ -144,12 +144,26 @@ public final class Train {
 	public int getSeatsRemaining() {
 		return getCapacity() - getPopulation();
 	}
-
+	
+	/**
+	 * Adds all passengers on station platform to train's 
+	 * capacity
+	 * 
+	 * @param station the current station the train is located
+	 */
+	public void addPassengers(Station station) {
+		// TODO: potential bug: if remaining seats is larger than number of people on platform likely to crash
+		Passenger[] incomingPassengers = station.getPassengers(currentLocation.getDirection(), getSeatsRemaining());
+		for(int i = 0; i<incomingPassengers.length; i++) {
+			passengers.add(incomingPassengers[i]);
+		}
+	}
+	
 	/**
 	 * Removes all passengers that are supposed to get off a 
 	 * passed location
 	 * 
-	 * @param station the current location of the train
+	 * @param station the current station the train is located
 	 */
 	public void removePassengers(Station station) {
 		for(int i=0; i<passengers.size(); i++) {
