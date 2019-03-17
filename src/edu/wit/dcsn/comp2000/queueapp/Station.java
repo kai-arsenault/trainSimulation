@@ -132,7 +132,7 @@ public final class Station
 	 * @return an array of passengers to be put on a train
 	 */
 	public Passenger[] getPassengers(Direction direction, int quantity) {
-		int getQuantity = Math.max(quantity, platforms.get(direction).size());
+		int getQuantity = Math.min(quantity, platforms.get(direction).size());
 	    Passenger[] output = new Passenger[getQuantity];
 	    for (int i = 0; i < getQuantity; i++) {
 	        output[i] = platforms.get(direction).remove();

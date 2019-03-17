@@ -56,7 +56,6 @@ public class TrainSimulation {
 
 		Configuration config = new Configuration();
 		Logger.logConfiguration(config) ;
-		Logger.close();
 
 		TrainRoute route = new TrainRoute(config.getRoute());
 		TrainSpec[] theTrainSpecs = config.getTrains();
