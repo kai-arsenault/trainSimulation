@@ -164,7 +164,7 @@ public final class Train {
 		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
 
-		Logger.write(String.format("%s passengers added to Train %s at Station %s%n", incomingPassengerSize,
+		Logger.write(String.format("%s passengers added to %s at %s%n", incomingPassengerSize,
 				this.toString(), station.toString()));
 	}
 

@@ -112,10 +112,17 @@ public final class Station
     	                      getClass().getSimpleName(),
     	                      id ) ;
     	}	// end toString()
-	
-	
-	public boolean addPassenger(Passenger passenger, Direction direction) {
-		Logger.write(String.format("Passenger %s added to Station %s travelling %s%n",
+
+	/**
+	 * Retrieves the specified amount of passengers from the platform queue
+	 *
+	 * @param passenger the passenger to be added to the station queue
+	 * @param direction which platform to add the passengers to
+	 *
+	 * @return an array of passengers to be put on a train
+	 */
+	boolean addPassenger(Passenger passenger, Direction direction) {
+		Logger.write(String.format("Passenger %s added to %s travelling %s%n",
 				passenger.toString(),
 				this.toString(),
 				direction.toString()
@@ -131,23 +138,19 @@ public final class Station
 	 *
 	 * @return an array of passengers to be put on a train
 	 */
-	public Passenger[] getPassengers(Direction direction, int quantity) {
+	Passenger[] getPassengers(Direction direction, int quantity) {
 		int getQuantity = Math.min(quantity, platforms.get(direction).size());
 	    Passenger[] output = new Passenger[getQuantity];
 	    for (int i = 0; i < getQuantity; i++) {
 	        output[i] = platforms.get(direction).remove();
         }
-	    Logger.write(String.format("%d passenger(s) removed from Station %s travelling %s%n",
+	    Logger.write(String.format("%d passenger(s) removed from %s travelling %s%n",
 				getQuantity,
 				this.toString(),
 				direction.toString()
 		));
 	    return output;
     }
-
-	// TODO complete this
-	
-	
 	
 	/**
 	 * Unit test driver
