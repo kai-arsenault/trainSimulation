@@ -38,7 +38,7 @@ package edu.wit.dcsn.comp2000.queueapp;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+//import java.util.Collections;
 
 import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
 
@@ -158,7 +158,7 @@ public final class Train {
 		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
 
-		Logger.write(String.format("%s passengers added to Train %s at Station %s", incomingPassengerSize,
+		Logger.write(String.format("%s passengers added to Train %s at Station %s%n", incomingPassengerSize,
 				this.toString(), station.toString()));
 	}
 
@@ -176,7 +176,7 @@ public final class Train {
 			}
 		}
 
-		Logger.write(String.format("%s passengers removed from Train %s at Station %s", passengersRemoved,
+		Logger.write(String.format("%s passengers removed from Train %s at Station %s%n", passengersRemoved,
 				this.toString(), station.toString()));
 	}
 
