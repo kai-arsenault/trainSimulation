@@ -160,8 +160,6 @@ public final class Train {
 	 * @param station the current station the train is located
 	 */
 	public void addPassengers(Station station) {
-		// TODO: potential bug: if remaining seats is larger than number of people on
-		// platform likely to crash
 		Passenger[] incomingPassengers = station.getPassengers(currentLocation.getDirection(), getSeatsRemaining());
 		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
@@ -187,8 +185,6 @@ public final class Train {
 		Logger.write(String.format("%s passengers removed from Train %s at Station %s%n", passengersRemoved,
 				this.toString(), station.toString()));
 	}
-
-	// TODO complete this
 
 	/**
 	 * Unit test driver
