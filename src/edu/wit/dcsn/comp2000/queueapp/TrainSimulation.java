@@ -152,7 +152,7 @@ public class TrainSimulation {
 				if (currentStation != null) {
 					currentTrain.removePassengers(currentStation);
 					// TODO: fix bugs
-					// currentTrain.addPassengers(currentStation);
+					currentTrain.addPassengers(currentStation);
 				} // end if
 			} // end for()
 		} // end for() main loop

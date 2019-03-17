@@ -127,7 +127,7 @@ public final class Train {
 	public int getID() {
 		return id;
 	}
-	
+
 	/**
 	 * Retrieves the current number of passengers on train
 	 * 
@@ -145,31 +145,39 @@ public final class Train {
 	public int getSeatsRemaining() {
 		return getCapacity() - getPopulation();
 	}
-	
+
 	/**
-	 * Adds all passengers on station platform to train's 
-	 * capacity
+	 * Adds all passengers on station platform to train's capacity
 	 * 
 	 * @param station the current station the train is located
 	 */
 	public void addPassengers(Station station) {
-		// TODO: potential bug: if remaining seats is larger than number of people on platform likely to crash
+		// TODO: potential bug: if remaining seats is larger than number of people on
+		// platform likely to crash
 		Passenger[] incomingPassengers = station.getPassengers(currentLocation.getDirection(), getSeatsRemaining());
+		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
+
+		Logger.write(String.format("%s passengers added to Train %s at Station %s", incomingPassengerSize,
+				this.toString(), station.toString()));
 	}
-	
+
 	/**
-	 * Removes all passengers that are supposed to get off a 
-	 * passed location
+	 * Removes all passengers that are supposed to get off a passed location
 	 * 
 	 * @param station the current station the train is located
 	 */
 	public void removePassengers(Station station) {
-		for(int i=0; i<passengers.size(); i++) {
-			if(passengers.get(i).getTo() == station.getLocation()) {
+		int passengersRemoved = 0;
+		for (int i = 0; i < passengers.size(); i++) {
+			if (passengers.get(i).getTo() == station.getLocation()) {
 				passengers.remove(i);
+				passengersRemoved++;
 			}
 		}
+
+		Logger.write(String.format("%s passengers removed from Train %s at Station %s", passengersRemoved,
+				this.toString(), station.toString()));
 	}
 
 	// TODO complete this
