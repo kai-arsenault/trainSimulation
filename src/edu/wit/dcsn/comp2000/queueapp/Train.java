@@ -60,6 +60,7 @@ import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
  * 
  * @author David M Rosenberg
  * @author Kai Arsenault
+ * @author Ernest Shedden
  * @version 1.0.0 base version
  */
 public final class Train {
@@ -108,6 +109,13 @@ public final class Train {
 	public Location getLocation() {
 		return currentLocation;
 	} // end getLocation()
+	
+	/**
+	 * Moves the train one position forward
+	 */
+	public void moveTrain() {
+		currentLocation.move();
+	} // end moveTrain()
 
 	/*
 	 * (non-Javadoc)
