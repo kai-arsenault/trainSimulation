@@ -150,7 +150,6 @@ public class TrainSimulation {
 				// Check if train is at a station
 				if (currentStation != null) {
 					currentTrain.removePassengers(currentStation);
-					// TODO: fix bugs
 					currentTrain.addPassengers(currentStation);
 				} // end if
 			} // end for()
