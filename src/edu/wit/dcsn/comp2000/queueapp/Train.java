@@ -38,6 +38,7 @@ package edu.wit.dcsn.comp2000.queueapp;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
 
@@ -154,9 +155,7 @@ public final class Train {
 	public void addPassengers(Station station) {
 		// TODO: potential bug: if remaining seats is larger than number of people on platform likely to crash
 		Passenger[] incomingPassengers = station.getPassengers(currentLocation.getDirection(), getSeatsRemaining());
-		for(int i = 0; i<incomingPassengers.length; i++) {
-			passengers.add(incomingPassengers[i]);
-		}
+		passengers.addAll(Arrays.asList(incomingPassengers));
 	}
 	
 	/**

@@ -52,7 +52,12 @@ public class TrainSimulation {
 	 * @param args -unused-
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
+		Logger.create();
+
 		Configuration config = new Configuration();
+		Logger.logConfiguration(config) ;
+		Logger.close();
+
 		TrainRoute route = new TrainRoute(config.getRoute());
 		TrainSpec[] theTrainSpecs = config.getTrains();
 		ArrayList<Station> stationList = new ArrayList<>();
@@ -99,7 +104,7 @@ public class TrainSimulation {
 					0 // current time indicates that clock hasn't started
 			);
 
-			System.out.printf("\t%s%n", aPassenger.toStringFull());
+			// System.out.printf("\t%s%n", aPassenger.toStringFull());
 
 			Station tempStation = getStation(stationList, aPassenger.getFrom());
 			Direction tempDirection = route.whichDirection(aPassenger.getFrom(), aPassenger.getTo());
@@ -129,7 +134,7 @@ public class TrainSimulation {
 						new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
 								Direction.NOT_APPLICABLE),
 						currentTime);
-				System.out.printf("\t%s%n", aPassenger.toStringFull());
+				// System.out.printf("\t%s%n", aPassenger.toStringFull());
 
 				Station tempStation = getStation(stationList, aPassenger.getFrom());
 				Direction tempDirection = route.whichDirection(aPassenger.getFrom(), aPassenger.getTo());
@@ -144,13 +149,15 @@ public class TrainSimulation {
 				Train currentTrain = trains.get(trainID);
 				Station currentStation = getStation(stationList, currentTrain.getLocation());
 				// Check if train is at a station
-				if (currentStation == null) {
+				if (currentStation != null) {
 					currentTrain.removePassengers(currentStation);
 					// TODO: fix bugs
 					// currentTrain.addPassengers(currentStation);
 				} // end if
 			} // end for()
 		} // end for() main loop
+
+		Logger.close();
 
 	} // end main()
 } // end class TrainSimulation
