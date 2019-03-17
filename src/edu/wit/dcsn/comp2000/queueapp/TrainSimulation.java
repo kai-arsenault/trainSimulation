@@ -142,6 +142,13 @@ public class TrainSimulation {
 					tempStation.addPassenger(aPassenger, tempDirection);
 				} // end if
 			} // end for()
+			
+			// Move trains to next position
+			for (Train aTrain : trains) {
+				aTrain.moveTrain();
+				// TODO: Change to logging when app is fully functional
+				System.out.printf("\t%s is %s carrying %s passengers%n", aTrain, aTrain.getLocation(), aTrain.getPopulation());
+			}
 
 			// Remove and pick up passengers as necessary
 			for (int trainID = 0; trainID < trains.size(); trainID++) {
@@ -150,6 +157,7 @@ public class TrainSimulation {
 				// Check if train is at a station
 				if (currentStation != null) {
 					currentTrain.removePassengers(currentStation);
+					// TODO: fix bugs
 					currentTrain.addPassengers(currentStation);
 				} // end if
 			} // end for()
