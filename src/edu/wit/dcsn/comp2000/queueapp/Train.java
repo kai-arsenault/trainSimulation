@@ -90,6 +90,12 @@ public final class Train {
 		currentLocation = new Location(onRoute, trainSpecification.location, trainSpecification.direction);
 
 	} // end 2-arg constructor
+	
+	public Train(Train source) {
+		id = source.getID();
+		capacity = source.getCapacity();
+		currentLocation = new Location(source.getLocation().getRoute(), source.getLocation().getPosition(), source.getLocation().getDirection());
+	}
 
 	/**
 	 * Retrieves the capacity (maximum number of Passengers simultaneously on this
@@ -109,11 +115,18 @@ public final class Train {
 	public Location getLocation() {
 		return currentLocation;
 	} // end getLocation()
+	
+	/**
+	 * Test moving of a train
+	 */
+	public void moveTempTrain() {
+		currentLocation.move();
+	}
 
 	/**
 	 * Moves the train one position forward.
 	 * 
-	 * @param List of stations
+	 * @param stationList List of stations
 	 */
 	public void moveTrain(ArrayList<Station> stationList) {
 		currentLocation.move();
@@ -126,7 +139,7 @@ public final class Train {
 			Logger.write(String.format("%s is %s carrying %s passenger(s)%n", this, this.getLocation(),
 					this.getPopulation()));
 	} // end moveTrain()
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
