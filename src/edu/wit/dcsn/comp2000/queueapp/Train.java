@@ -119,7 +119,7 @@ public final class Train {
 		currentLocation.move(); 
 		Station aStation = TrainSimulation.getStation(stationList, this.getLocation());
 		if (aStation != null) // Train arrived at a station
-			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passengers%n",
+			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passenger(s)%n",
 					this,
 					aStation.toString(),
 					currentLocation.getDirection(),
@@ -127,7 +127,7 @@ public final class Train {
 					this.getPopulation()
 			));
 		else // Train did not yet arrive at a station
-			Logger.write(String.format("%s is %s carrying %s passengers%n",
+			Logger.write(String.format("%s is %s carrying %s passenger(s)%n",
 				this,
 				this.getLocation(),
 				this.getPopulation()
