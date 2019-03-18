@@ -152,7 +152,7 @@ public final class Station
 	    for (int i = 0; i < getQuantity; i++) {
 	        output[i] = platforms.get(direction).remove();
         }
-	    Logger.write(String.format("%d passenger(s) removed from %s traveling %s%n",
+	    Logger.write(String.format("%d passenger(s) removed from %s traveling %s",
 				getQuantity,
 				this.toString(),
 				direction.toString()
