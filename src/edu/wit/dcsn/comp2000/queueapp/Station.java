@@ -122,7 +122,7 @@ public final class Station
 	 * @return an array of passengers to be put on a train
 	 */
 	boolean addPassenger(Passenger passenger, Direction direction) {
-		Logger.write(String.format("Passenger %s added to %s travelling %s%n",
+		Logger.write(String.format("%s added to %s travelling %s%n",
 				passenger.toString(),
 				this.toString(),
 				direction.toString()
