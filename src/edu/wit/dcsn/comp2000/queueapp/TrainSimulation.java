@@ -146,23 +146,16 @@ public class TrainSimulation {
 			// Move trains to next position
 			for (Train aTrain : trains) {
 				aTrain.moveTrain();
-				// TODO: Change to logging when app is fully functional
-				Logger.write(String.format("\t%s is %s carrying %s passengers%n",
-						aTrain,
-						aTrain.getLocation(),
-						aTrain.getPopulation()
-				));
 			}
 
 			// Remove and pick up passengers as necessary
-			for (int trainID = 0; trainID < trains.size(); trainID++) {
-				Train currentTrain = trains.get(trainID);
-				Station currentStation = getStation(stationList, currentTrain.getLocation());
+			for (Train aTrain : trains) {
+				Station aStation = getStation(stationList, aTrain.getLocation());
 				// Check if train is at a station
-				if (currentStation != null) {
-					currentTrain.removePassengers(currentStation);
+				if (aStation != null) {
+					aTrain.removePassengers(aStation);
 					// TODO: fix bugs
-					currentTrain.addPassengers(currentStation);
+					aTrain.addPassengers(aStation);
 				} // end if
 			} // end for()
 		} // end for() main loop
