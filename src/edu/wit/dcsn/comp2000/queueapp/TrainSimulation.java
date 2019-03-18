@@ -146,7 +146,21 @@ public class TrainSimulation {
 
 			// Move trains to next position
 			for (Train aTrain : trains) {
+				Train tempTrain = new Train(aTrain);
+				boolean haltTrain = false;
+				tempTrain.moveTempTrain();
+				
+				for (Train anotherTrain : trains) {
+					// If a train occupies the next position, do not move the train
+					if (tempTrain.getLocation().equals(anotherTrain.getLocation()) && tempTrain.getLocation().getDirection().equals(anotherTrain.getLocation().getDirection())) {
+						haltTrain = true;
+						Logger.write(String.format("%s, %s carrying %s passenger(s), is waiting for the train ahead to move %n", aTrain,
+								aTrain.getLocation(), aTrain.getPopulation()));
+					}
+				}
+				if (haltTrain == false) {
 				aTrain.moveTrain(stationList);
+				}
 			}
 
 			// Remove and pick up passengers as necessary
@@ -161,6 +175,16 @@ public class TrainSimulation {
 		} // end for() main loop
 
 		Logger.close();
+		
+		System.out.println("\n" + simulationLoops + " ticks later...\n");
+		for (Train aTrain : trains) {
+			System.out.printf("\t%s is %s carrying %s passenger(s)%n", aTrain, aTrain.getLocation(),
+					aTrain.getPopulation());
+		}
+		
+		for (Station station : stationList) {
+			System.out.printf("\n\t%s passenger(s) waiting at %s", station.getPopulation(), station);
+		}
 
 	} // end main()
 } // end class TrainSimulation
