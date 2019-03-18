@@ -109,29 +109,22 @@ public final class Train {
 	public Location getLocation() {
 		return currentLocation;
 	} // end getLocation()
-	
+
 	/**
-	 * Moves the train one position forward. 
+	 * Moves the train one position forward.
 	 * 
 	 * @param List of stations
 	 */
 	public void moveTrain(ArrayList<Station> stationList) {
-		currentLocation.move(); 
+		currentLocation.move();
 		Station aStation = TrainSimulation.getStation(stationList, this.getLocation());
 		if (aStation != null) // Train arrived at a station
-			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passenger(s)%n",
-					this,
-					aStation.toString(),
-					currentLocation.getDirection(),
-					currentLocation.getRoute(),
-					this.getPopulation()
-			));
+			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passenger(s)%n", this,
+					aStation.toString(), currentLocation.getDirection(), currentLocation.getRoute(),
+					this.getPopulation()));
 		else // Train did not yet arrive at a station
-			Logger.write(String.format("%s is %s carrying %s passenger(s)%n",
-				this,
-				this.getLocation(),
-				this.getPopulation()
-			));
+			Logger.write(String.format("%s is %s carrying %s passenger(s)%n", this, this.getLocation(),
+					this.getPopulation()));
 	} // end moveTrain()
 
 	/*
@@ -176,13 +169,13 @@ public final class Train {
 	 * 
 	 * @param station the current station the train is located
 	 */
-	public void addPassengers(Station station) {
+	public void board(Station station) {
 		Passenger[] incomingPassengers = station.getPassengers(currentLocation.getDirection(), getSeatsRemaining());
 		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
 
-		Logger.write(String.format("%s passenger(s) added to %s at %s%n", incomingPassengerSize,
-				this.toString(), station.toString()));
+		Logger.write(String.format("%s passenger(s) added to %s at %s%n", incomingPassengerSize, this.toString(),
+				station.toString()));
 	}
 
 	/**
@@ -190,7 +183,7 @@ public final class Train {
 	 * 
 	 * @param station the current station the train is located
 	 */
-	public void removePassengers(Station station) {
+	public void disembark(Station station) {
 		int passengersRemoved = 0;
 		for (int i = 0; i < passengers.size(); i++) {
 			if (passengers.get(i).getTo() == station.getLocation()) {
@@ -199,8 +192,8 @@ public final class Train {
 			}
 		}
 
-		Logger.write(String.format("%s passenger(s) removed from %s at %s%n", passengersRemoved,
-				this.toString(), station.toString()));
+		Logger.write(String.format("%s passenger(s) removed from %s at %s%n", passengersRemoved, this.toString(),
+				station.toString()));
 	}
 
 	/**

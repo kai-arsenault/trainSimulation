@@ -55,7 +55,7 @@ public class TrainSimulation {
 		Logger.create();
 
 		Configuration config = new Configuration();
-		Logger.logConfiguration(config) ;
+		Logger.logConfiguration(config);
 
 		TrainRoute route = new TrainRoute(config.getRoute());
 		TrainSpec[] theTrainSpecs = config.getTrains();
@@ -124,7 +124,8 @@ public class TrainSimulation {
 			newPassengerCount = minimumPassengers == maximumPassengers ? minimumPassengers
 					: pseudoRandom.nextInt(maximumPassengers - minimumPassengers) + minimumPassengers + 1;
 
-			Logger.write(String.format("%,5d: Generating %d passenger(s) (per-tick):%n", currentTime, newPassengerCount));
+			Logger.write(
+					String.format("%,5d: Generating %d passenger(s) (per-tick):%n", currentTime, newPassengerCount));
 
 			for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
 				Passenger aPassenger = new Passenger(
@@ -142,7 +143,7 @@ public class TrainSimulation {
 					tempStation.addPassenger(aPassenger, tempDirection);
 				} // end if
 			} // end for()
-			
+
 			// Move trains to next position
 			for (Train aTrain : trains) {
 				aTrain.moveTrain(stationList);
@@ -153,9 +154,8 @@ public class TrainSimulation {
 				Station aStation = getStation(stationList, aTrain.getLocation());
 				// Check if train is at a station
 				if (aStation != null) {
-					aTrain.removePassengers(aStation);
-					// TODO: fix bugs
-					aTrain.addPassengers(aStation);
+					aTrain.disembark(aStation);
+					aTrain.board(aStation);
 				} // end if
 			} // end for()
 		} // end for() main loop
