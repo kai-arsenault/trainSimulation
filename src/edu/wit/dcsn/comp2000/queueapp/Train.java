@@ -121,7 +121,7 @@ public final class Train {
 	 */
 	public void moveTempTrain() {
 		currentLocation.move();
-	}
+	} // end moveTempTrain()
 
 	/**
 	 * Moves the train one position forward.
