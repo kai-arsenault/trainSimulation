@@ -115,7 +115,7 @@ public final class Train {
 	 */
 	public void moveTrain() {
 		currentLocation.move();
-		Logger.write(String.format("\t%s is %s carrying %s passengers%n",
+		Logger.write(String.format("%s is %s carrying %s passengers%n",
 				this,
 				this.getLocation(),
 				this.getPopulation()
