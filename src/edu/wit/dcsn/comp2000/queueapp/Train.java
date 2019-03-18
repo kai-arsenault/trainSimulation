@@ -111,21 +111,23 @@ public final class Train {
 	} // end getLocation()
 	
 	/**
-	 * Moves the train one position forward.
+	 * Moves the train one position forward. 
+	 * 
+	 * @param List of stations
 	 */
 	public void moveTrain(ArrayList<Station> stationList) {
-		currentLocation.move();
+		currentLocation.move(); 
 		Station aStation = TrainSimulation.getStation(stationList, this.getLocation());
-		if (aStation != null) 
-			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passenger(s)%n",
+		if (aStation != null) // Train arrived at a station
+			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passengers%n",
 					this,
 					aStation.toString(),
 					currentLocation.getDirection(),
 					currentLocation.getRoute(),
 					this.getPopulation()
 			));
-		else
-			Logger.write(String.format("%s is %s carrying %s passenger(s)%n",
+		else // Train did not yet arrive at a station
+			Logger.write(String.format("%s is %s carrying %s passengers%n",
 				this,
 				this.getLocation(),
 				this.getPopulation()
