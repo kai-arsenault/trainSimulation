@@ -180,7 +180,7 @@ public class TrainSimulation {
 					aTrain.getPopulation());
 		}
 		
-		// Print number of passangers waiting at each station
+		// Print number of passengers waiting at each station
 		for (Station station : stationList) {
 			System.out.printf("\n\t%s passenger(s) waiting at %s", station.getPopulation(), station);
 		}
