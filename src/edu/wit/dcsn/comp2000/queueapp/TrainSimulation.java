@@ -30,7 +30,7 @@ import edu.wit.dcsn.comp2000.queueapp.Configuration.TrainSpec;
  * @version 1.0.0
  */
 public class TrainSimulation {
-	// TODO: Finish method getStation's javadoc definition
+
 	/**
 	 * Get station based on location and station array list, if location is not a
 	 * station return a null
@@ -103,8 +103,6 @@ public class TrainSimulation {
 					0 // current time indicates that clock hasn't started
 			);
 
-			// System.out.printf("\t%s%n", aPassenger.toStringFull());
-
 			Station tempStation = getStation(stationList, aPassenger.getFrom());
 			Direction tempDirection = route.whichDirection(aPassenger.getFrom(), aPassenger.getTo());
 
@@ -134,7 +132,6 @@ public class TrainSimulation {
 						new Location(route, theStationSpecs[pseudoRandom.nextInt(theStationSpecs.length)],
 								Direction.NOT_APPLICABLE),
 						currentTime);
-				// System.out.printf("\t%s%n", aPassenger.toStringFull());
 
 				Station tempStation = getStation(stationList, aPassenger.getFrom());
 				Direction tempDirection = route.whichDirection(aPassenger.getFrom(), aPassenger.getTo());
@@ -156,8 +153,8 @@ public class TrainSimulation {
 						haltTrain = true;
 						Logger.write(String.format("%s, %s carrying %s passenger(s), is waiting for the train ahead to move %n", aTrain,
 								aTrain.getLocation(), aTrain.getPopulation()));
-					}
-				}
+					} // end if
+				} // end foreach()
 				if (haltTrain == false) {
 				aTrain.moveTrain(stationList);
 				}
@@ -176,12 +173,14 @@ public class TrainSimulation {
 
 		Logger.close();
 		
+		// Print last status of train to console
 		System.out.println("\n" + simulationLoops + " ticks later...\n");
 		for (Train aTrain : trains) {
 			System.out.printf("\t%s is %s carrying %s passenger(s)%n", aTrain, aTrain.getLocation(),
 					aTrain.getPopulation());
 		}
 		
+		// Print number of passangers waiting at each station
 		for (Station station : stationList) {
 			System.out.printf("\n\t%s passenger(s) waiting at %s", station.getPopulation(), station);
 		}
