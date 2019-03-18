@@ -117,7 +117,7 @@ public final class Train {
 		currentLocation.move();
 		Station aStation = TrainSimulation.getStation(stationList, this.getLocation());
 		if (aStation != null) 
-			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passengers%n",
+			Logger.write(String.format("%s arrived at %s's %s platform on %s carrying %s passenger(s)%n",
 					this,
 					aStation.toString(),
 					currentLocation.getDirection(),
@@ -125,7 +125,7 @@ public final class Train {
 					this.getPopulation()
 			));
 		else
-			Logger.write(String.format("%s is %s carrying %s passengers%n",
+			Logger.write(String.format("%s is %s carrying %s passenger(s)%n",
 				this,
 				this.getLocation(),
 				this.getPopulation()
@@ -179,7 +179,7 @@ public final class Train {
 		int incomingPassengerSize = incomingPassengers.length;
 		passengers.addAll(Arrays.asList(incomingPassengers));
 
-		Logger.write(String.format("%s passengers added to %s at %s%n", incomingPassengerSize,
+		Logger.write(String.format("%s passenger(s) added to %s at %s%n", incomingPassengerSize,
 				this.toString(), station.toString()));
 	}
 
@@ -197,7 +197,7 @@ public final class Train {
 			}
 		}
 
-		Logger.write(String.format("%s passengers removed from %s at %s%n", passengersRemoved,
+		Logger.write(String.format("%s passenger(s) removed from %s at %s%n", passengersRemoved,
 				this.toString(), station.toString()));
 	}
 

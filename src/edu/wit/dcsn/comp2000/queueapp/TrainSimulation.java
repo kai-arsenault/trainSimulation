@@ -124,7 +124,7 @@ public class TrainSimulation {
 			newPassengerCount = minimumPassengers == maximumPassengers ? minimumPassengers
 					: pseudoRandom.nextInt(maximumPassengers - minimumPassengers) + minimumPassengers + 1;
 
-			Logger.write(String.format("%,5d: Generating %d passengers (per-tick):%n", currentTime, newPassengerCount));
+			Logger.write(String.format("%,5d: Generating %d passenger(s) (per-tick):%n", currentTime, newPassengerCount));
 
 			for (int passengerCount = 1; passengerCount <= newPassengerCount; passengerCount++) {
 				Passenger aPassenger = new Passenger(
@@ -145,7 +145,7 @@ public class TrainSimulation {
 			
 			// Move trains to next position
 			for (Train aTrain : trains) {
-				aTrain.moveTrain();
+				aTrain.moveTrain(stationList);
 			}
 
 			// Remove and pick up passengers as necessary
