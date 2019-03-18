@@ -111,10 +111,15 @@ public final class Train {
 	} // end getLocation()
 	
 	/**
-	 * Moves the train one position forward
+	 * Moves the train one position forward.
 	 */
 	public void moveTrain() {
 		currentLocation.move();
+		Logger.write(String.format("\t%s is %s carrying %s passengers%n",
+				this,
+				this.getLocation(),
+				this.getPopulation()
+		));
 	} // end moveTrain()
 
 	/*
