@@ -39,7 +39,7 @@ public class TrainSimulation {
 	 * @param location the location to check if station is located at
 	 * @return station or null
 	 */
-	private static Station getStation(ArrayList<Station> list, Location location) {
+	static Station getStation(ArrayList<Station> list, Location location) {
 		for (Station station : list) {
 			if (station.getLocation().equals(location)) {
 				return station;
