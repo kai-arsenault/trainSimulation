@@ -101,6 +101,14 @@ public final class Station
     	return location ;
     	}	// end getLocation()
 	
+	/**
+	 * Retrieves the number of passengers at this station
+	 * 
+	 * @return the inbound plus outbound passenger quantity
+	 */
+	public int getPopulation() {
+		return platforms.get(Direction.INBOUND).size() + platforms.get(Direction.OUTBOUND).size();
+	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -122,7 +130,7 @@ public final class Station
 	 * @return an array of passengers to be put on a train
 	 */
 	boolean addPassenger(Passenger passenger, Direction direction) {
-		Logger.write(String.format("%s added to %s travelling %s%n",
+		Logger.write(String.format("%s added to %s traveling %s%n",
 				passenger.toString(),
 				this.toString(),
 				direction.toString()
@@ -144,7 +152,7 @@ public final class Station
 	    for (int i = 0; i < getQuantity; i++) {
 	        output[i] = platforms.get(direction).remove();
         }
-	    Logger.write(String.format("%d passenger(s) removed from %s travelling %s%n",
+	    Logger.write(String.format("%d passenger(s) removed from %s traveling %s%n",
 				getQuantity,
 				this.toString(),
 				direction.toString()
