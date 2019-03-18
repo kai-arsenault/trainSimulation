@@ -199,7 +199,7 @@ public final class Train {
 	public void disembark(Station station) {
 		int passengersRemoved = 0;
 		for (int i = 0; i < passengers.size(); i++) {
-			if (passengers.get(i).getTo() == station.getLocation()) {
+			if (passengers.get(i).getTo().equals(station.getLocation())) {
 				passengers.remove(i);
 				passengersRemoved++;
 			}
