@@ -187,7 +187,7 @@ public final class Train {
 			}
 		}
 
-		Logger.write(String.format("%s passengers removed from Train %s at Station %s%n", passengersRemoved,
+		Logger.write(String.format("%s passengers removed from %s at %s%n", passengersRemoved,
 				this.toString(), station.toString()));
 	}
 
