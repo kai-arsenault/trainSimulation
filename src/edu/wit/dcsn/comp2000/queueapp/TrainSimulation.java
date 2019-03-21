@@ -64,8 +64,10 @@ public class TrainSimulation {
 		int[] theStationSpecs = config.getStations();
 		Configuration.PairedLimit[] thePassengerSpecs = config.getPassengers();
 
-		System.out.printf("Using configurations:%n\t%-20s\t: %s%n\t%-20s\t: %s%n", "Stations",
-				Arrays.toString(theStationSpecs), "Passengers", Arrays.toString(thePassengerSpecs));
+		System.out.printf("Using configurations:%n\t%-20s\t: %s%n\t%-20s\t: %s%n\t%-20s\t: %s%n\n", "Stations",
+				Arrays.toString(theStationSpecs), "Passengers", Arrays.toString(thePassengerSpecs), "Route", config.getRoute());
+		int trainLimit = 2 * config.getRoute().length - 1;
+		System.out.printf("This train route supports a maximum of " + trainLimit + " trains to remain functional\n\n");
 
 		// create a pseudo-random number generator instance
 		Random pseudoRandom = new Random(config.getSeed());
