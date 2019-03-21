@@ -90,12 +90,16 @@ public final class Train {
 		currentLocation = new Location(onRoute, trainSpecification.location, trainSpecification.direction);
 
 	} // end 2-arg constructor
-	
+	/**
+	 * Creates a copy of the object passed to it
+	 * 
+	 * @param source the object to be copied
+	 */
 	public Train(Train source) {
 		id = source.getID();
 		capacity = source.getCapacity();
 		currentLocation = new Location(source.getLocation().getRoute(), source.getLocation().getPosition(), source.getLocation().getDirection());
-	}
+	} // end 1-arg constructor
 
 	/**
 	 * Retrieves the capacity (maximum number of Passengers simultaneously on this
